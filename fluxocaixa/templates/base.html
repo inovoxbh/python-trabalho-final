@@ -7,6 +7,11 @@
     <title>Fluxo de Caixa</title>
 </head>
 <body>
+    <nav>
+        <a href="{% url 'titulospagar' %}">[Títulos a Pagar]</a>
+        <br />
+        <a href="{% url 'titulosreceber' %}">[Títulos a Receber]</a>
+    </nav>
     <div>
         {% block content %}
         {% endblock %}

@@ -1,6 +1,4 @@
-#from django.shortcuts import render
-from django.http import HttpResponse
-from fluxocaixa.models import TituloPagar
+from django.shortcuts import render
 
 def index(request):
-    return HttpResponse("Fluxo de Caixa")
+    return render(request, 'base.html')

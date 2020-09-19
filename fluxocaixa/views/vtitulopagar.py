@@ -1,9 +1,6 @@
 from django.http import HttpResponse
-from django.http import JsonResponse
 from fluxocaixa.models import TituloPagar
 from fluxocaixa.forms import TituloPagarForm
-from django.views.decorators.csrf import csrf_exempt
-from django.http.multipartparser import MultiPartParser
 from django.template import loader
 from django.shortcuts import render, redirect
 
@@ -38,7 +35,6 @@ def deletar(request,tituloid):
 
 def atualizar(request,tituloid):
     data = {}
-    #db_entidade = TituloPagar.objects.titulo(tituloid=tituloid)
     db_entidade = TituloPagar.objects.get(id=tituloid)
     
     form = TituloPagarForm(request.POST or None, instance=db_entidade)
