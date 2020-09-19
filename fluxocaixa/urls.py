@@ -7,4 +7,5 @@ urlpatterns = [
     path('pagar/<int:tituloid>', vtitulopagar.titulo, name='titulopagar'),
     path('pagar/novo/', vtitulopagar.novo, name='novo_titulopagar'),
     path('pagar/deletar/<int:tituloid>', vtitulopagar.deletar, name='deletar_titulopagar'),
+    path('pagar/atualizar/<int:tituloid>', vtitulopagar.atualizar, name='atualizar_titulopagar'),
 ]

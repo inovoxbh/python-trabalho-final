@@ -28,10 +28,23 @@ def novo(request):
         return redirect('titulospagar')
     
     data['form'] = form
-    return render(request, 'titulopagar/inserir.html', data)
+    return render(request, 'titulopagar/form.html', data)
 
 def deletar(request,tituloid):
     db_entidade = TituloPagar.objects.titulo(tituloid=tituloid)
     db_entidade.delete()
 
     return redirect('titulospagar')
+
+def atualizar(request,tituloid):
+    data = {}
+    #db_entidade = TituloPagar.objects.titulo(tituloid=tituloid)
+    db_entidade = TituloPagar.objects.get(id=tituloid)
+    
+    form = TituloPagarForm(request.POST or None, instance=db_entidade)
+    if form.is_valid():
+        form.save()
+        return redirect('titulospagar')
+
+    data['form'] = form
+    return render(request, 'titulopagar/form.html', data)
