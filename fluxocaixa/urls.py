@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import vindex, vtitulopagar, vtituloreceber, vformapgto
+from .views import vindex, vtitulopagar, vtituloreceber, vformapgto, vclassificacaopagar
 
 urlpatterns = [
     path('', vindex.index, name='index'),
@@ -21,4 +21,10 @@ urlpatterns = [
     path('formapgto/nova/', vformapgto.nova, name='nova_formapgto'),
     path('formapgto/deletar/<int:formapgtoid>', vformapgto.deletar, name='deletar_formapgto'),
     path('formapgto/atualizar/<int:formapgtoid>', vformapgto.atualizar, name='atualizar_formapgto'),
+
+    path('classificacaopagar/classificacoespagar/', vclassificacaopagar.classificacoespagar, name='classificacoespagar'),
+    path('classificacaopagar/<int:classificacaoid>', vclassificacaopagar.classificacaopagar, name='classificacaopagar'),
+    path('classificacaopagar/nova/', vclassificacaopagar.nova, name='nova_classificacaopagar'),
+    path('classificacaopagar/deletar/<int:classificacaoid>', vclassificacaopagar.deletar, name='deletar_classificacaopagar'),
+    path('classificacaopagar/atualizar/<int:classificacaoid>', vclassificacaopagar.atualizar, name='atualizar_classificacaopagar'),
 ]

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% if lista %}
+        {% for i in lista %}
+            <div>
+                <p>#{{i.id}} {{ i.descricao }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Nenhum item localizado para exibição.</p>
+    {% endif %}
+
+    <br />
+    <a href="{% url 'classificacoespagar' %}">[Classificações Contas a Pagar]</a>
+
+{% endblock %}

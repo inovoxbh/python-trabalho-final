@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+            
+	{% if lista %}
+		<ul>
+		{% for i in lista %}
+			<li>
+                <a href="/fluxo/classificacaopagar/{{ i.id }}">{{ i.descricao }} </a>
+                <br />
+                <a href="/fluxo/classificacaopagar/deletar/{{ i.id }}">[Deletar]</a>
+                <br />
+                <a href="/fluxo/classificacaopagar/atualizar/{{ i.id }}">[Atualizar]</a>
+            </li>
+            <br />
+		{% endfor %}
+        </ul>
+	{% else %}
+		<p>Nenhum item localizado para exibição.</p>
+    {% endif %}
+    
+    <a href="{% url 'nova_classificacaopagar' %}">[Adicionar]</a>
+
+{% endblock %}

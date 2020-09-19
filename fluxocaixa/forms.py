@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import TituloPagar, TituloReceber, FormaPagamento
+from .models import TituloPagar, TituloReceber, FormaPagamento, ClassificacaoPagar
 
 class TituloPagarForm(ModelForm):
     class Meta:
@@ -14,4 +14,9 @@ class TituloReceberForm(ModelForm):
 class FormaPagamentoForm(ModelForm):
     class Meta:
         model = FormaPagamento
+        fields = ['descricao']
+
+class ClassificacaoPagarForm(ModelForm):
+    class Meta:
+        model = ClassificacaoPagar
         fields = ['descricao']
