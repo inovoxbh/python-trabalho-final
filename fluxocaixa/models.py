@@ -53,17 +53,20 @@ class TituloManager(models.Manager):
 
 class TituloPagar(models.Model):
     data_vencimento = models.DateField()
-    data_pagamento = models.DateField()
+    data_pagamento = models.DateField(
+        blank=True,
+        null=True
+    )
     valor = models.DecimalField(max_digits=11, decimal_places=2)
     descricao = models.CharField(max_length=100)
     classificacao = models.ForeignKey(
         ClassificacaoPagar,
         on_delete=models.RESTRICT,
-        null="true")
+        null=True)
     formapagamento = models.ForeignKey(
         FormaPagamento,
         on_delete=models.RESTRICT,
-        null="true")
+        null=True)
     OPCOES_SITUACAO = [
         ('PG','Pago'),
         ('AP','A Pagar')
@@ -81,17 +84,20 @@ class TituloPagar(models.Model):
 
 class TituloReceber(models.Model):
     data_expectativa = models.DateField()
-    data_recebimento = models.DateField()
+    data_recebimento = models.DateField(
+        blank=True,
+        null=True
+    )
     valor = models.DecimalField(max_digits=11, decimal_places=2)
     descricao = models.CharField(max_length=100)
     classificacao = models.ForeignKey(
         ClassificacaoReceber,
         on_delete=models.RESTRICT,
-        null="true")
+        null=True)
     formapagamento = models.ForeignKey(
         FormaPagamento,
         on_delete=models.RESTRICT,
-        null="true")
+        null=True)
     OPCOES_SITUACAO = [
         ('RC','Recebido'),
         ('AR','A Receber')

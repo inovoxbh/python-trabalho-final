@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+            
+	{% if lista %}
+		<ul>
+		{% for i in lista %}
+			<li>
+                <a href="/fluxo/pagar/{{ i.id }}">{{ i.descricao }}, R$ {{ i.valor }} </a>
+                <br />
+                <a href="/fluxo/pagar/deletar/{{ i.id }}">[Deletar]</a>
+            </li>
+            <br />
+		{% endfor %}
+        </ul>
+	{% else %}
+		<p>Nenhum item localizado para exibição.</p>
+    {% endif %}
+    
+    <a href="{% url 'novo_titulopagar' %}">[Adicionar]</a>
+
+{% endblock %}
