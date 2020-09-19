@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import vindex, vtitulopagar, vtituloreceber
+from .views import vindex, vtitulopagar, vtituloreceber, vformapgto
 
 urlpatterns = [
     path('', vindex.index, name='index'),
@@ -16,4 +16,9 @@ urlpatterns = [
     path('receber/deletar/<int:tituloid>', vtituloreceber.deletar, name='deletar_tituloreceber'),
     path('receber/atualizar/<int:tituloid>', vtituloreceber.atualizar, name='atualizar_tituloreceber'),
 
+    path('formapgto/formaspgto/', vformapgto.formaspgto, name='formaspgto'),
+    path('formapgto/<int:formapgtoid>', vformapgto.formapgto, name='formapgto'),
+    path('formapgto/nova/', vformapgto.nova, name='nova_formapgto'),
+    path('formapgto/deletar/<int:formapgtoid>', vformapgto.deletar, name='deletar_formapgto'),
+    path('formapgto/atualizar/<int:formapgtoid>', vformapgto.atualizar, name='atualizar_formapgto'),
 ]

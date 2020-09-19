@@ -4,7 +4,7 @@
     {% if lista %}
         {% for i in lista %}
             <div>
-                <p>#{{i.id}} {{ i.descricao }}, R$ {{ i.valor }}, vencimento em {{ i.data_expectativa}}</p>
+                <p>#{{i.id}} {{ i.descricao }}</p>
             </div>
         {% endfor %}
     {% else %}
@@ -12,6 +12,6 @@
     {% endif %}
 
     <br />
-    <a href="{% url 'titulosreceber' %}">[Títulos a Receber]</a>
+    <a href="{% url 'formaspgto' %}">[Formas de Pagamento]</a>
 
 {% endblock %}

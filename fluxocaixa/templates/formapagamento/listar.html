@@ -5,11 +5,11 @@
 		<ul>
 		{% for i in lista %}
 			<li>
-                <a href="/fluxo/pagar/{{ i.id }}">{{ i.descricao }}, R$ {{ i.valor }} </a>
+                <a href="/fluxo/formapgto/{{ i.id }}">{{ i.descricao }} </a>
                 <br />
-                <a href="/fluxo/pagar/deletar/{{ i.id }}">[Deletar]</a>
+                <a href="/fluxo/formapgto/deletar/{{ i.id }}">[Deletar]</a>
                 <br />
-                <a href="/fluxo/pagar/atualizar/{{ i.id }}">[Atualizar]</a>
+                <a href="/fluxo/formapgto/atualizar/{{ i.id }}">[Atualizar]</a>
             </li>
             <br />
 		{% endfor %}
@@ -18,6 +18,6 @@
 		<p>Nenhum item localizado para exibição.</p>
     {% endif %}
     
-    <a href="{% url 'novo_titulopagar' %}">[Adicionar]</a>
+    <a href="{% url 'nova_formapgto' %}">[Adicionar]</a>
 
 {% endblock %}
