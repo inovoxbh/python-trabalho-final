@@ -1,6 +1,6 @@
 from django.db import models
 
-class ClassificacaoPagarManager(models.Manager):
+class ClassificacaoManager(models.Manager):
     def todos(self):
         result = self.all()
         return result
@@ -15,7 +15,15 @@ class ClassificacaoPagar(models.Model):
     def __str__ (self):
         return self.descricao
 
-    objects = ClassificacaoPagarManager()        
+    objects = ClassificacaoManager()        
+
+class ClassificacaoReceber(models.Model):
+    descricao = models.CharField(max_length=30)
+
+    def __str__ (self):
+        return self.descricao
+
+    objects = ClassificacaoManager()        
 
 class FormaPagamentoManager(models.Manager):
     def todos(self):
@@ -34,13 +42,13 @@ class FormaPagamento(models.Model):
 
     objects = FormaPagamentoManager()        
 
-class TituloPagarManager(models.Manager):
+class TituloManager(models.Manager):
     def todos(self):
         result = self.all()
         return result
 
-    def titulopagar(self,titulopagarid):
-        result = self.filter(id=titulopagarid)
+    def titulo(self,tituloid):
+        result = self.filter(id=tituloid)
         return result
 
 class TituloPagar(models.Model):
@@ -69,4 +77,32 @@ class TituloPagar(models.Model):
     def __str__ (self):
         return f"{self.descricao}, R$ {self.valor}, vencimento em {self.data_vencimento}."
 
-    objects = TituloPagarManager()
+    objects = TituloManager()
+
+class TituloReceber(models.Model):
+    data_expectativa = models.DateField()
+    data_recebimento = models.DateField()
+    valor = models.DecimalField(max_digits=11, decimal_places=2)
+    descricao = models.CharField(max_length=100)
+    classificacao = models.ForeignKey(
+        ClassificacaoReceber,
+        on_delete=models.RESTRICT,
+        null="true")
+    formapagamento = models.ForeignKey(
+        FormaPagamento,
+        on_delete=models.RESTRICT,
+        null="true")
+    OPCOES_SITUACAO = [
+        ('RC','Recebido'),
+        ('AR','A Receber')
+    ]
+    situacao = models.CharField(
+        max_length=2,
+        choices=OPCOES_SITUACAO,
+        default='AR'
+    )
+
+    def __str__ (self):
+        return f"{self.descricao}, R$ {self.valor}, vencimento em {self.data_expectativa}."
+
+    objects = TituloManager()    
