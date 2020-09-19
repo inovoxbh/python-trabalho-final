@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h1>Previsto - A Pagar</h1>
+    {% if lista_pagar %}
+		<ul>
+		{% for i in lista_pagar %}
+			<li>{{i.data_vencimento}} - {{ i.descricao }}, R$ {{ i.valor }} - Classificacao: {{ i.classificacao }}</li>
+		{% endfor %}
+        </ul>
+	{% else %}
+		<p>Nenhum item a pagar localizado para exibição.</p>
+    {% endif %}
+    
+    <h1>Previsto - A Receber</h1>
+    {% if lista_receber %}
+		<ul>
+		{% for i in lista_receber %}
+			<li>{{i.data_expectativa}} - {{ i.descricao }}, R$ {{ i.valor }} - Classificacao: {{ i.classificacao }}</li>
+		{% endfor %}
+        </ul>
+	{% else %}
+		<p>Nenhum item a receber localizado para exibição.</p>
+    {% endif %}
+
+{% endblock %}
