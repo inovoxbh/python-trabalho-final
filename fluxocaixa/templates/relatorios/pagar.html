@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+            
+	{% if lista %}
+		<ul>
+		{% for i in lista %}
+			<li>{{i.data_vencimento}} - {{ i.descricao }}, R$ {{ i.valor }}</li>
+		{% endfor %}
+        </ul>
+	{% else %}
+		<p>Nenhum item localizado para exibição.</p>
+    {% endif %}
+    
+{% endblock %}
