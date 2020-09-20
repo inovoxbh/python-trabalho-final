@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from fluxocaixa.models import TituloPagar, TituloReceber
+from fluxocaixa.models import TituloPagar, TituloReceber, SaldoInicial
 from django.template import loader
 from django.shortcuts import render, redirect
 
@@ -34,7 +34,13 @@ def nomedomes(mes):
 def previsto(request):
     db_lista_pagar = TituloPagar.objects.filter(situacao="AP").order_by('data_vencimento','classificacao')
     db_lista_receber = TituloReceber.objects.filter(situacao="AR").order_by('data_expectativa','classificacao')
-
+    
+    # saldo inicial
+    db_saldo_inicial = SaldoInicial.objects.all().order_by('id')
+    for i in db_saldo_inicial:
+        valorinicial =i.valorinicial
+    print(valorinicial)
+    
     valorreceitastotal =0
     valorreceitasmes =0
 

@@ -126,6 +126,6 @@ class SaldoInicial(models.Model):
     valorinicial = models.DecimalField(max_digits=11, decimal_places=2)
 
     def __str__ (self):
-        return self.valorinicial
+        return str(self.valorinicial)
 
     objects = SaldoInicialManager()
