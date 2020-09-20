@@ -7,8 +7,7 @@ urlpatterns = [
     path('relatorios/pagar', vrelatorios.pagar, name='relatorio_pagar'),
     path('relatorios/receber', vrelatorios.receber, name='relatorio_receber'),
 
-    path('relatoriofluxo/previsto', vfluxo.previsto, name='fluxo_previsto'),
-    path('relatoriofluxo/realizado', vfluxo.realizado, name='fluxo_realizado'),
+    path('relatoriofluxo/<str:opcao>', vfluxo.relatoriofluxocaixa, name='relatoriofluxocaixa'),
 
     path('saldoinicial/saldoinicial/', vsaldoinicial.saldoinicial, name='saldoinicial'),
     path('saldoinicial/novo/', vsaldoinicial.novo, name='novo_saldoinicial'),

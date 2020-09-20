@@ -31,11 +31,21 @@ def nomedomes(mes):
     return nomemes
 
 
-def previsto(request):
-    db_lista_pagar = TituloPagar.objects.filter(situacao="AP").order_by('data_vencimento','classificacao')
-    db_lista_receber = TituloReceber.objects.filter(situacao="AR").order_by('data_expectativa','classificacao')
+def relatoriofluxocaixa(request,opcao):
+    if (opcao == "previsto"):
+        situacaopagar ="AP"
+        situacaoreceber ="AR"
+        titulo ="FLUXO CAIXA PREVISTO"
+    else: 
+        situacaopagar ="PG"
+        situacaoreceber ="RC"
+        titulo ="FLUXO CAIXA REALIZADO"
+
+    db_lista_pagar = TituloPagar.objects.filter(situacao=situacaopagar).order_by('data_vencimento','classificacao')
+    db_lista_receber = TituloReceber.objects.filter(situacao=situacaoreceber).order_by('data_expectativa','classificacao')
     
     # saldo inicial
+    valorinicial =0
     db_saldo_inicial = SaldoInicial.objects.all().order_by('id')
     for i in db_saldo_inicial:
         valorinicial =i.valorinicial
@@ -44,6 +54,8 @@ def previsto(request):
     valordespesastotal =0
 
     dados ="<div>"
+    dados += "<a href='/'>[Home]</a>"
+    dados += "<h1 style='background-color: gray'>" + titulo + "</h1>"
 
     if (db_lista_pagar or db_lista_receber):
         # receitas
@@ -51,7 +63,7 @@ def previsto(request):
             anoant =0
             mesant =0
 
-            dados += "<h1 style='background-color: green'>Receitas Previstas</h1>"
+            dados += "<h1 style='background-color: green'>Receitas</h1>"
             for i in db_lista_receber:
                 titulo = TituloReceber.objects.get(id=i.id)
                 
@@ -87,7 +99,7 @@ def previsto(request):
             anoant =0
             mesant =0
 
-            dados += "<h1 style='background-color: orange'>Despesas Previstas</h1>"
+            dados += "<h1 style='background-color: orange'>Despesas</h1>"
             for i in db_lista_pagar:
                 titulo = TituloPagar.objects.get(id=i.id)
                 
@@ -133,15 +145,3 @@ def previsto(request):
     dados += "</div>"
 
     return HttpResponse(dados)
-
-def realizado(request):
-    db_lista_pagar = TituloPagar.objects.filter(situacao="PG").order_by('data_vencimento','classificacao')
-    db_lista_receber = TituloReceber.objects.filter(situacao="RC").order_by('data_expectativa','classificacao')
-    
-    payload = {
-        'lista_pagar' : list(db_lista_pagar),
-        'lista_receber' : list(db_lista_receber),
-    }
-    
-    template = loader.get_template('fluxo/previsto.html')
-    return HttpResponse(template.render(payload, request))
