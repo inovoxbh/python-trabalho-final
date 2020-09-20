@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+            
+	{% if lista %}
+		<ul>
+		{% for i in lista %}
+			<li>
+                <p>R$ {{ i.valorinicial }}</p>
+                <br />
+                <a href="/fluxo/saldoinicial/deletar/{{ i.id }}">[Deletar]</a>
+                <br />
+                <a href="/fluxo/saldoinicial/atualizar/{{ i.id }}">[Atualizar]</a>
+            </li>
+            <br />
+		{% endfor %}
+        </ul>
+	{% else %}
+		<p>Nenhum saldo localizado para exibição.</p>
+    {% endif %}
+    
+    {% if not lista %}
+        <a href="{% url 'novo_saldoinicial' %}">[Adicionar]</a>
+    {% endif %}
+
+{% endblock %}

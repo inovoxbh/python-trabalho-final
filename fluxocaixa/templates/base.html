@@ -8,6 +8,9 @@
 </head>
 <body>
     <nav>
+        <a href="{% url 'index' %}">[Home]</a>
+        <br />
+        <br />
         <a href="{% url 'titulospagar' %}">[Títulos a Pagar]</a>
         <br />
         <a href="{% url 'titulosreceber' %}">[Títulos a Receber]</a>
@@ -29,6 +32,8 @@
         <a href="{% url 'fluxo_previsto' %}">[Fluxo Previsto]</a>
         <br />        
         <a href="{% url 'fluxo_realizado' %}">[Fluxo Realizado]</a>
+        <br />        
+        <a href="{% url 'saldoinicial' %}">[Saldo Inicial]</a>
         <br />        
         <br />
     </nav>

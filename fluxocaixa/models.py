@@ -111,4 +111,21 @@ class TituloReceber(models.Model):
     def __str__ (self):
         return f"{self.descricao}, R$ {self.valor}, vencimento em {self.data_expectativa}."
 
-    objects = TituloManager()    
+    objects = TituloManager()
+
+class SaldoInicialManager(models.Manager):
+    def todos(self):
+        result = self.all()
+        return result
+
+    def saldoinicial(self,saldoinicialid):
+        result = self.filter(id=saldoinicialid)
+        return result
+
+class SaldoInicial(models.Model):
+    valorinicial = models.DecimalField(max_digits=11, decimal_places=2)
+
+    def __str__ (self):
+        return self.valorinicial
+
+    objects = SaldoInicialManager()

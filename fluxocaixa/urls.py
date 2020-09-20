@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import vindex, vtitulopagar, vtituloreceber, vformapgto, vclassificacaopagar, vclassificacaoreceber, vrelatorios, vfluxo
+from .views import vindex, vtitulopagar, vtituloreceber, vformapgto, vclassificacaopagar, vclassificacaoreceber, vrelatorios, vfluxo, vsaldoinicial
 
 urlpatterns = [
     path('', vindex.index, name='index'),
@@ -7,8 +7,13 @@ urlpatterns = [
     path('relatorios/pagar', vrelatorios.pagar, name='relatorio_pagar'),
     path('relatorios/receber', vrelatorios.receber, name='relatorio_receber'),
 
-    path('fluxo/previsto', vfluxo.previsto, name='fluxo_previsto'),
-    path('fluxo/realizado', vfluxo.realizado, name='fluxo_realizado'),
+    path('relatoriofluxo/previsto', vfluxo.previsto, name='fluxo_previsto'),
+    path('relatoriofluxo/realizado', vfluxo.realizado, name='fluxo_realizado'),
+
+    path('saldoinicial/saldoinicial/', vsaldoinicial.saldoinicial, name='saldoinicial'),
+    path('saldoinicial/novo/', vsaldoinicial.novo, name='novo_saldoinicial'),
+    path('saldoinicial/deletar/<int:saldoinicialid>', vsaldoinicial.deletar, name='deletar_saldoinicial'),
+    path('saldoinicial/atualizar/<int:saldoinicialid>', vsaldoinicial.atualizar, name='atualizar_saldoinicial'),
 
     path('pagar/titulos/', vtitulopagar.titulos, name='titulospagar'),
     path('pagar/<int:tituloid>', vtitulopagar.titulo, name='titulopagar'),
