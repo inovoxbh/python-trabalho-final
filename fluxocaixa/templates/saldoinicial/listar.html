@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
             
-	{% if lista %}
-		<ul>
+    {% if lista %}
+        {% if not lista %}
+            <a class="btn btn-primary" href="{% url 'novo_saldoinicial' %}">Adicionar</a>
+        {% endif %}
+
+		<ul class="list-group"> 
 		{% for i in lista %}
-			<li>
+			<li class="list-group-item list-group-item-action">
                 <p>R$ {{ i.valorinicial }}</p>
                 <br />
-                <a href="/fluxo/saldoinicial/deletar/{{ i.id }}">[Deletar]</a>
+                <a class="btn btn-danger" href="/fluxo/saldoinicial/deletar/{{ i.id }}">Deletar</a>
                 <br />
-                <a href="/fluxo/saldoinicial/atualizar/{{ i.id }}">[Atualizar]</a>
+                <a class="btn btn-success" href="/fluxo/saldoinicial/atualizar/{{ i.id }}">Atualizar</a>
             </li>
             <br />
 		{% endfor %}
         </ul>
 	{% else %}
 		<p>Nenhum saldo localizado para exibição.</p>
-    {% endif %}
-    
-    {% if not lista %}
-        <a href="{% url 'novo_saldoinicial' %}">[Adicionar]</a>
     {% endif %}
 
 {% endblock %}

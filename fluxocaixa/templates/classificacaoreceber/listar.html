@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
             
-	{% if lista %}
-		<ul>
+    {% if lista %}
+        <a class="btn btn-primary" href="{% url 'nova_classificacaoreceber' %}">Adicionar</a>
+		<ul class="list-group">
 		{% for i in lista %}
-			<li>
+			<li class="list-group-item list-group-item-action">
                 <a href="/fluxo/classificacaoreceber/{{ i.id }}">{{ i.descricao }} </a>
                 <br />
-                <a href="/fluxo/classificacaoreceber/deletar/{{ i.id }}">[Deletar]</a>
+                <a class="btn btn-danger" href="/fluxo/classificacaoreceber/deletar/{{ i.id }}">Deletar</a>
                 <br />
-                <a href="/fluxo/classificacaoreceber/atualizar/{{ i.id }}">[Atualizar]</a>
+                <a class="btn btn-success" href="/fluxo/classificacaoreceber/atualizar/{{ i.id }}">Atualizar</a>
             </li>
             <br />
 		{% endfor %}
@@ -17,7 +18,5 @@
 	{% else %}
 		<p>Nenhum item localizado para exibição.</p>
     {% endif %}
-    
-    <a href="{% url 'nova_classificacaoreceber' %}">[Adicionar]</a>
 
 {% endblock %}
